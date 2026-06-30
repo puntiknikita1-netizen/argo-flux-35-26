@@ -1,15 +1,13 @@
 ---
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: OCIRepository
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
 metadata:
   name: sealed-secrets
   namespace: flux-system
 spec:
-  interval: 5m
-  url: oci://registry-1.docker.io/bitnamicharts/sealed-secrets
-  ref:
-    semver: ">=1.15.0-0"
+  interval: 1h0m0s
+  url: https://charts.bitnami.com/bitnami
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
