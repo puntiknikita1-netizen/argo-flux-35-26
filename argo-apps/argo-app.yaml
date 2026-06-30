@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: ./argo-core/
+    repoURL:  https://github.com/puntiknikita1-netizen/argo-flux-35-26.git
+    targetRevision: master
+  syncPolicy:
+    automated:
+      enabled: true
+      prune: false
+      selfHeal: false

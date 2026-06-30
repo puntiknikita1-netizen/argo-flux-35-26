@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: first-app
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  source:
+    path: ''
+    repoURL: https://puntiknikita1-netizen.github.io/helm-35-26/
+    targetRevision: 0.1.0
+    chart: first-app
+    helm:
+      parameters:
+        - name: istio.hosts[0]
+          value: app-helm.k8s-11.sa
+        - name: istio.hosts[1]
+          value: app-helm.k8s-12.sa
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+      enabled: true
