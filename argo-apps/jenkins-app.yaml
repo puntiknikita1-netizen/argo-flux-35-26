@@ -5,7 +5,7 @@ metadata:
   namespace: argocd                 # должно быть argocd, чтобы ArgoCD его видел
 spec:
   destination:
-    namespace: jenkins              # namespace, куда устанавливать Jenkins
+    namespace: ci-cd              # namespace, куда устанавливать Jenkins
     server: https://kubernetes.default.svc
   source:
     repoURL: https://puntiknikita1-netizen.github.io/helm-35-26/
