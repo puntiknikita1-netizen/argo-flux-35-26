@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jenkins                     # имя приложения в ArgoCD
+  namespace: argocd                 # должно быть argocd, чтобы ArgoCD его видел
+spec:
+  destination:
+    namespace: jenkins              # namespace, куда устанавливать Jenkins
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://puntiknikita1-netizen.github.io/helm-35-26/
+    chart: jenkins                  # название вашего чарта Jenkins
+    targetRevision: 0.1.0           # версия чарта (замените на вашу)
+    helm:
+      parameters:
+        - name: istio.hosts[0]
+          value: jenkins.k8s-11.sa
+        - name: istio.hosts[1]
+          value: jenkins.k8s-12.sa
+        # здесь можно добавить другие параметры, которые вы использовали
+        # например, persistence.storageClass, ingress.enabled и т.д.
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+      enabled: true
